@@ -4,15 +4,15 @@ A web application built with Vue.js frontend and Node.js/Express backend, using 
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Technologies Used](#technologies-used)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Database Setup](#database-setup)
-- [Running the Application](#running-the-application)
-- [API Integration](#api-integration)
-- [License](#license)
+- [Overview](#-overview)
+- [Technologies Used](#-technologies-used)
+- [Prerequisites](#%EF%B8%8F-prerequisites)
+- [Installation](#-installation)
+- [Configuration](#%EF%B8%8F-configuration)
+- [Database Setup](#%EF%B8%8F-database-setup)
+- [Running the Application](#-running-the-application)
+- [API Integration](#-api-integration)
+- [License](#-license)
 
 ## 🔍 Overview
 
@@ -112,6 +112,15 @@ Before you begin, ensure you have the following installed:
    ```
    The server will start on port 5000 (or the port specified in your .env file).
 
+### Syncing Data from API to Database
+
+1. After starting the server, run the sync.js file to populate the database with data from the RAWG API:
+   ```bash
+   node sync.js
+   ```
+   
+   **Important Note**: This process might take several minutes to complete as it involves fetching and processing a large amount of game data from the RAWG API. Please be patient during this step.
+
 ### Running the Client
 
 1. Open a new terminal and navigate to the client directory:
@@ -132,5 +141,7 @@ The application integrates with the RAWG API to fetch game data. The server acts
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
 
 Developed with ❤️ by Gome Ben Moshe
