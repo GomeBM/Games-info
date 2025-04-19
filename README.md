@@ -12,7 +12,6 @@ A web application built with Vue.js frontend and Node.js/Express backend, using 
 - [Database Setup](#%EF%B8%8F-database-setup)
 - [Running the Application](#-running-the-application)
 - [API Integration](#-api-integration)
-- [License](#-license)
 
 ## 🔍 Overview
 
@@ -137,10 +136,6 @@ Before you begin, ensure you have the following installed:
 ## 🔌 API Integration
 
 The application integrates with the RAWG API to fetch game data. The server acts as a proxy for RAWG API calls, which helps secure your API key.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
