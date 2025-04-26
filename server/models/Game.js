@@ -1,5 +1,3 @@
-// /server/models/game.js
-
 module.exports = (sequelize, DataTypes) => {
   const Game = sequelize.define("Game", {
     id: {
@@ -46,6 +44,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
   });
+
+  Game.associate = (models) => {
+    Game.belongsToMany(models.User, {
+      through: "UserFavorites", // Name of the junction table
+      foreignKey: "gameId", // Foreign key in UserFavorites referencing Game
+      otherKey: "userId", // Foreign key in UserFavorites referencing User
+      as: "usersWhoFavorited", // Alias for the association
+    });
+  };
 
   return Game;
 };

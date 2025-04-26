@@ -6,15 +6,14 @@ import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
 import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
-import routes from "./router";
+import router from "./router"; // Import the router
 import store from "./Store/store";
+import axios from "axios"; // Import Axios
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
+// Configure Axios globally
+axios.defaults.withCredentials = true; // Include cookies in all requests
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL; // Set base URL
 
 const vuetify = createVuetify({
   components,
