@@ -3,6 +3,7 @@ import axios from "axios";
 import HomePage from "./Pages/HomePage/HomePage.vue";
 import GameInfo from "./Pages/GameInfo/GameInfo.vue";
 import Register from "./Pages/Authentication/Register.vue";
+import Login from "./Pages/Authentication/Login.vue";
 
 const NotFound = {
   template:
@@ -25,6 +26,12 @@ const routes = [
     path: "/register",
     name: "Register",
     component: Register,
+    meta: { hideLayout: true }, // Hide SideNav and Navbar for this route
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
     meta: { hideLayout: true }, // Hide SideNav and Navbar for this route
   },
   {

@@ -7,7 +7,7 @@ exports.isAuthenticated = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Attach user data to the request
+    req.attachedData = decoded; // Attach user data to the request
     next();
   } catch (err) {
     res.status(403).json({ message: "Invalid token" });

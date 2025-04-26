@@ -66,7 +66,8 @@ exports.loginUser = async (req, res) => {
 // Get user profile (protected route)
 exports.getUserProfile = async (req, res) => {
   try {
-    const user = await User.findByPk(req.user.id, {
+    const userId = req.attachedData.User.id;
+    const user = await User.findByPk(userId, {
       attributes: { exclude: ["password"] },
     });
     if (!user) return res.status(404).json({ message: "User not found" });

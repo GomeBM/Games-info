@@ -20,7 +20,7 @@
       <button type="submit">Register</button>
     </form>
 
-    <p v-if="successMessage" class="success">{{ successMessage }}</p>
+    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -34,20 +34,19 @@ export default {
         email: "",
         password: "",
       },
-      successMessage: "",
+      errorMessage: "",
     };
   },
   methods: {
-    handleSubmit() {
-      // Here you would usually send the form to your backend
-      console.log("Registering user:", this.form);
-      this.successMessage = "Registration successful!";
-      this.resetForm();
-    },
-    resetForm() {
-      this.form.username = "";
-      this.form.email = "";
-      this.form.password = "";
+    async handleSubmit() {
+      try {
+        // Dispatch the register action directly
+        await this.$store.dispatch("users/register", this.form);
+        this.$router.push("/login"); // Redirect to login page on success
+      } catch (error) {
+        this.errorMessage =
+          error.response?.data?.message || "Registration failed.";
+      }
     },
   },
 };
@@ -58,8 +57,8 @@ export default {
   max-width: 400px;
   margin: 0 auto;
 }
-.success {
-  color: green;
+.error {
+  color: red;
   margin-top: 10px;
 }
 </style>

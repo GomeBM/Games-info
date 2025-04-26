@@ -1,64 +1,3 @@
-<!-- <template>
-  <div class="app-layout">
-    <SideNav></SideNav>
-    <div class="main-section">
-      <div class="navbar"></div>
-      <div class="content">
-        <router-view></router-view>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-import SideNav from "./components/SideNav.vue";
-
-export default {
-  name: "App",
-  components: {
-    SideNav,
-  },
-};
-</script>
-
-<style scoped>
-.app-layout {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.main-section {
-  margin-left: 180px;
-  width: calc(100vw - 180px);
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.navbar {
-  height: 50px;
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 180px;
-  width: calc(100vw - 180px);
-  z-index: 1000;
-}
-
-.content {
-  margin-top: 50px;
-  height: calc(100vh - 50px);
-  overflow-y: auto;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-</style> -->
-
 <template>
   <div class="app-layout">
     <!-- Conditionally render SideNav -->
@@ -66,7 +5,10 @@ export default {
 
     <div class="main-section">
       <!-- Conditionally render Navbar -->
-      <div class="navbar" v-if="!hideLayout"></div>
+      <div
+        class="navbar"
+        :style="{ width: navbarWidth, left: navbarLeft }"
+      ></div>
 
       <div class="content">
         <router-view></router-view>
@@ -76,7 +18,6 @@ export default {
 </template>
 
 <script>
-import { computed } from "vue";
 import { useRoute } from "vue-router";
 import SideNav from "./components/SideNav.vue";
 
@@ -85,20 +26,32 @@ export default {
   components: {
     SideNav,
   },
-  setup() {
-    const route = useRoute();
-
-    // Check if the current route has the meta.hideLayout property set to true
-    const hideLayout = computed(() => route.meta.hideLayout);
-
+  data() {
     return {
-      hideLayout,
+      route: useRoute(),
     };
+  },
+  computed: {
+    hideLayout() {
+      return this.route.meta.hideLayout;
+    },
+    navbarWidth() {
+      // Check if the current route's name is "register" or "login"
+      return this.route.name === "Register" || this.route.name === "Login"
+        ? "100vw"
+        : "calc(100vw - 180px)";
+    },
+    navbarLeft() {
+      // Check if the current route's name is "register" or "login"
+      return this.route.name === "Register" || this.route.name === "Login"
+        ? "0"
+        : "180px";
+    },
   },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .app-layout {
   display: flex;
   width: 100vw;
@@ -122,8 +75,6 @@ export default {
   box-sizing: border-box;
   position: fixed;
   top: 0;
-  left: 180px;
-  width: calc(100vw - 180px);
   z-index: 1000;
 }
 
